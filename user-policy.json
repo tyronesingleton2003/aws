@@ -1,0 +1,14 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AWSSSOReadOnly",
+            "Effect": "Allow",
+            "Action": [
+                "sso:ListProfiles",
+                "sso:Search*"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
