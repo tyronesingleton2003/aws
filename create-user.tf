@@ -1,5 +1,10 @@
+provider "aws" {
+  region = "us-east-1"
+}
+
 resource "aws_iam_user" "admin-user" {
-  name = "willie"
+  name = var.operators[count.index]
+  count = length(var.operators)
   tags = {
     Description = "Technical Team Leader"
   }
@@ -11,8 +16,9 @@ resource "aws_iam_policy" "adminUser" {
   description = "Policy for Admin Users."
 }
 
-resource "aws_iam_policy_attachment" "basic-user-acces" {
-  name       = "test-attachment"
-  users      = [aws_iam_user.admin-user.name]
-  policy_arn = aws_iam_policy.adminUser.arn
-}
+#resource "aws_iam_policy_attachment" "basic-user-acces" {
+#  name       = "test-attachment"
+#  users      = var.operators[count.index]
+#  policy_arn = aws_iam_policy.adminUser.arn
+#  count = length(var.operators)
+#}
